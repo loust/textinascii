@@ -34,15 +34,22 @@ void printHorizontal(char *str){
     interpretor(str,0);
     int i, j, e, limit, atozi;
     char holder;
+
     //have an array to store the letters in from the queue (after they get dequeued)
     //check if the word's end reaches \n or move to the next letter after the 10th index
     //NOTE: Loop 50 times because of the '\'s in after each matrix, it is basically a one liner
     //"*********\n*********\n ... " etc.
     for (e = 0; e < 5; ++e) {
         for (i = 0; i < count; i++) {
+
+            //NOTICE that the use of atozi = ((int)str[i] - 0x41)
+            //would have eliminated the use of queues, but
+            //this is a demonstration of queue use.
+            //Though, the use of direct parameter (str[i]) would be more efficient.
             holder = dequeue2();
             enqueue(holder); //* line 56
             atozi = ((int)holder - 0x41);
+
             //note that it's reading from line 2, which is the 10s.
             //it is skipping 1 2 3 4
             //nake a variable to hold e*10 and if e=1, it will only multiply it by 1 instead of 10
@@ -55,7 +62,7 @@ void printHorizontal(char *str){
                 }
             }
         }
-        printf("\n");
+        putchar('\n');
     }
     //*
     //empties the queue, because the method I'm using is a forced
